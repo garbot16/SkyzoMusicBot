@@ -72,12 +72,12 @@ async def pause_cmd(_, message):
     checking = message.from_user.mention
     chat_id = message.chat.id
     if not await is_active_chat(chat_id):
-        return await message.reply_text("I dont think if something's playing on voice chat")
+        return await message.reply_text("Tidak ada musik yang diputar di obrolan suara")
     elif not await is_music_playing(message.chat.id):
-        return await message.reply_text("I dont think if something's playing on voice chat")   
+        return await message.reply_text("Tidak ada musik yang diputar di obrolan suara")   
     await music_off(chat_id)
     await music.pytgcalls.pause_stream(chat_id)
-    await message.reply_text(f"**🎧 Voicechat Paused By {checking}!**")
+    await message.reply_text(f"**⏸ Lagu dijeda. • Untuk melanjutkan pemutaran, gunakan perintah » /resume**")
     
 @app.on_message(filters.command("resume"))
 async def stop_cmd(_, message): 
@@ -90,13 +90,13 @@ async def stop_cmd(_, message):
     checking = message.from_user.mention
     chat_id = message.chat.id
     if not await is_active_chat(chat_id):
-        return await message.reply_text("I dont think if something's playing on voice chat")
+        return await message.reply_text("Tidak ada musik yang diputar di obrolan suara")
     elif await is_music_playing(chat_id):
-        return await message.reply_text("I dont think if something's playing on voice chat") 
+        return await message.reply_text("Tidak ada musik yang diputar di obrolan suara") 
     else:
         await music_on(chat_id)
         await music.pytgcalls.resume_stream(chat_id)
-        await message.reply_text(f"**🎧 Voicechat Resumed By {checking}!**")
+        await message.reply_text(f"**▶️ Melanjutkan pemutaran lagu yang dijeda. • Untuk menjeda pemutaran, gunakan perintah » /pause.**")
 
 @app.on_message(filters.command(["stop", "end"]))
 async def stop_cmd(_, message): 
@@ -115,9 +115,9 @@ async def stop_cmd(_, message):
             pass                        
         await remove_active_chat(chat_id)
         await music.pytgcalls.leave_group_call(chat_id)
-        await message.reply_text(f"**🎧 Voicechat End/Stopped By {checking}!**") 
+        await message.reply_text(f"**__✅ Userbot telah terputus dari obrolan suara.__**") 
     else:
-        return await message.reply_text("**🤷🏻‍♂ I Dont Think If Something Playing On Voice Chat**")
+        return await message.reply_text("Tidak ada musik yang diputar di obrolan suara")
     
 @app.on_message(filters.command("skip"))
 async def stop_cmd(_, message): 
@@ -131,12 +131,12 @@ async def stop_cmd(_, message):
     chat_id = message.chat.id
     chat_title = message.chat.title
     if not await is_active_chat(chat_id):
-        await message.reply_text("Nothing's playing on Music")
+        await message.reply_text("Tidak ada musik yang diputar di obrolan suara")
     else:
         task_done(chat_id)
         if is_empty(chat_id):
             await remove_active_chat(chat_id)
-            await message.reply_text("No more music in __Queue__ \n\nLeaving Voice Chat")
+            await message.reply_text("❌Tidak ada lagi musik di __Queue__ \n\n✅ Berhasil Meninggalkan Obrolan Suara")
             await music.pytgcalls.leave_group_call(chat_id)
             return  
         else:
