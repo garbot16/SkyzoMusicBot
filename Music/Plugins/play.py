@@ -58,7 +58,7 @@ def time_to_seconds(time):
         int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":")))
     )
 
-@Client.on_message(command(["play", "play@Tg_Vc_00_Bot"]))
+@Client.on_message(command(["play", "play@BOT_USERNAME"]))
 async def play(_, message: Message):
     chat_id = message.chat.id
     if message.sender_chat:
@@ -138,7 +138,7 @@ async def play(_, message: Message):
         fucksemx = 1
         what = "Audio Searched"
         await LOG_CHAT(message, what)
-        mystic = await message.reply_text(f"**💸 Processing Your Song....**")
+        mystic = await message.reply_text(f"**🔎 Processing Your Song....**")
         if audio.file_size > 157286400:
             await mystic.edit_text("Audio File Size Should Be Less Than 150 mb") 
             return
