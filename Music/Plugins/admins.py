@@ -47,6 +47,13 @@ async def member_permissions(chat_id: int, user_id: int):
     return perms
 from Music.MusicUtilities.helpers.administrator import adminsOnly
 
+@app.on_message(filters.command(["reload", f"reload@{BOT_USERNAME}"]))
+async def reload(_, message):
+    chat_id = message.chat.id
+    await _.send_message(
+    chat_id,
+    "✅ Bot dimulai ulang **berhasil**\n\n✅ **Admin** daftar telah **diperbarui**"
+)
 @app.on_message(filters.command("cleandb"))
 async def stop_cmd(_, message): 
     chat_id = message.chat.id
@@ -250,12 +257,3 @@ async def stop_cmd(_, message):
                 caption=f"<b>__Skipped Voice Chat__</b>\n\n🎥<b>__Started Playing:__</b> {title} \n⏳<b>__Duration:__</b> {duration} \n👤<b>__Requested by:__ </b> {username}",
                 )
                 return
-
-@app.on_message(filters.command(["reload", f"reload@{BOT_USERNAME}"]))
-async def reload(_, message):
-    chat_id = message.chat.id
-    await _.send_message(
-    chat_id,
-    "✅ Bot dimulai ulang **berhasil**\n\n✅ **Admin** daftar telah **diperbarui**"
-)
-
