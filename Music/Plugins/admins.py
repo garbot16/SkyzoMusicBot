@@ -117,7 +117,7 @@ async def stop_cmd(_, message):
         await music.pytgcalls.leave_group_call(chat_id)
         await message.reply_text(f"**__✅ Userbot telah terputus dari obrolan suara.__**") 
     else:
-        return await message.reply_text("Tidak ada musik yang diputar di obrolan suara")
+        return await message.reply_text("Tidak ada musik yang diputar")
     
 @app.on_message(filters.command("skip"))
 async def stop_cmd(_, message): 
@@ -146,13 +146,13 @@ async def stop_cmd(_, message):
             f3 = (afk[2])
             finxx = (f"{f1}{f2}{f3}")
             if str(finxx) != "raw":   
-                mystic = await message.reply_text("Music is currently playing Playlist...\n\nDownloading Next Music From Playlist....")
+                mystic = await message.reply_text("Musik sedang diputar Daftar Putar...\n\nMengunduh Musik Berikutnya Dari Daftar Putar...."
                 url = (f"https://www.youtube.com/watch?v={afk}")
                 try:
                     with yt_dlp.YoutubeDL(ytdl_opts) as ytdl:
                         x = ytdl.extract_info(url, download=False)
                 except Exception as e:
-                    return await mystic.edit(f"Failed to download this video.\n\n**Reason**:{e}") 
+                    return await mystic.edit(f"Gagal mengunduh video ini.\n\n**Alasan**:{e}") 
                 title = (x["title"])
                 videoid = afk
                 def my_hook(d):
@@ -250,3 +250,6 @@ async def stop_cmd(_, message):
                 caption=f"<b>__Skipped Voice Chat__</b>\n\n🎥<b>__Started Playing:__</b> {title} \n⏳<b>__Duration:__</b> {duration} \n👤<b>__Requested by:__ </b> {username}",
                 )
                 return
+
+                return
+
