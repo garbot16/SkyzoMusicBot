@@ -11,7 +11,7 @@ from Music.config import GROUP, CHANNEL
 def play_markup(videoid, user_id):
     buttons= [
             [      
-                InlineKeyboardButton(text="🧰 Menu", callback_data=f'other {videoid}|{user_id}'),
+                InlineKeyboardButton(text="🎛️ Menu", callback_data=f'other {videoid}|{user_id}'),
                 InlineKeyboardButton(text="🗑️ Close", callback_data=f'close2')
             ],
         ]
@@ -31,8 +31,8 @@ def others_markup(videoid, user_id):
                 InlineKeyboardButton(text="➕ Add Group List", callback_data=f'group_playlist {videoid}|{user_id}')
             ],
             [
-                InlineKeyboardButton(text="📩 Get Audio", callback_data=f'gets audio|{videoid}|{user_id}'),
-                InlineKeyboardButton(text="📥 Get Video", callback_data=f'gets video|{videoid}|{user_id}')
+                InlineKeyboardButton(text="⬇️ Get Audio", callback_data=f'gets audio|{videoid}|{user_id}'),
+                InlineKeyboardButton(text="⬇️ Get Video", callback_data=f'gets video|{videoid}|{user_id}')
             ],
             [
                 InlineKeyboardButton(text="⬅️ Go back", callback_data=f'goback {videoid}|{user_id}'),
